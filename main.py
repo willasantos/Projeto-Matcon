@@ -1,44 +1,30 @@
-# --  ARQUIVO PRINCIPAL -- #
-# Futuramente será substituído pela UI
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5 import uic
 
-import models.produtos_model as ProdModel
-import models.clientes_model as CliModel
-from utils.vendas import Venda
-import os
+from ui.ui_produtos import Cadprodutos
+from ui.ui_clientes import Cadclientes
 
-def printProdutos(lista):
-    for l in lista:
-        l.printInfo()
+class MainWindow(QMainWindow):
+    def __int__(self):
+        super().__init__()
+        uic.loadUi("mainwindow.ui", self)
+        self.b_cadProdutos.clicked.connect(self.openCadProdutos)
+        self.b_cadClientes.clicked.connect(self.openCadClientes)
 
-os.system("clear")
-id_cliente = int(input("Digite o id do cliente: "))
-cliente = CliModel.getCliente(id_cliente)
-lista_produtos = ProdModel.getProdutos()
-venda = Venda(-1, id_cliente)
-while(True):
-    os.system("clear")
-    print("Cliente: ", cliente.nome)
-    print("Quantidade de itens no carrinho: ",venda.qtdItens())
+    def openCadProdutos(self):
+       self.w = Cadprodutos()
+       print("clique em produtos")
+       self.w.show()
 
-    # lista de produtos
-    print("\n\nLista de Produtos:")
-    printProdutos(lista_produtos)
+    def openCadClientes(self):
+        self.w = Cadclientes()
+        print("clique em clientes")
+        self.w.show()    
 
-    # escolher o produto
-    id_produto = int(input("Digite o id do produto: "))
-    #add esse produto na lista de venda (carrinho de compra)
-    produto = ProdModel.getProduto(id_produto)
-    venda.addItem(produto)
+app = QApplication(sys.argv)
 
-    op = input("\n\nPara finalizar a compra digite S: ")
-    if(op.upper() == "S"):
-        break
+window = MainWindow()
+window.show()
 
-os.system("clear")
-print("\n\nVenda finalizada")
-print("Lista de itens: ")
-prods = venda.getItens()
-lista_produtos(prods)
-
-print("\nValor total: ", venda.valorTotal())
-   
+app.exec()
