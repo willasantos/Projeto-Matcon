@@ -20,7 +20,7 @@ class CadClientes(QWidget):
 
     def setEventos(self):
         self.b_salvar.clicked.connect(self.salvarCliente)
-        self.b_limpar.clicked.connect(self.limparCampos)
+        self.b_limpar.clicked.connect(self.limpaCampos)
         self.b_excluir.clicked.connect(self.excluirItem)
 
     def salvarCliente(self):
@@ -33,7 +33,6 @@ class CadClientes(QWidget):
                 
                 self.table.add(novo)
             else:
-                # manda editar no bando de dados
                 novo.id = self.clienteAtual.id
                 self.table.update(novo)
            
@@ -58,7 +57,7 @@ class CadClientes(QWidget):
         self.email.setText("")
         self.endereco.setText("")
 
-        self.b_salvar.setText("Novo")
+        self.b_salvar.setText("Salvar")
         self.b_excluir.setEnabled(False)
 
     def insereInfo(self, cliente):

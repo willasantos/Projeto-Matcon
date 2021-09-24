@@ -1,4 +1,4 @@
-# importat a classe cliente
+# importar a classe cliente
 
 from utils.clientes import Cliente
 import  models.database as db
@@ -9,7 +9,7 @@ def getClientes():
     # se comunica com o BD
     cursor = conn.cursor()
     # executa o comando de seleção dos clientes
-    cursor.execute("""SELECT * From clientes;""")
+    cursor.execute("SELECT * From clientes;")
     # coloca o resultado em uma lista de objetos clientes
     lista_clientes = []
     for linha in cursor.fetchall():

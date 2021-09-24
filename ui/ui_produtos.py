@@ -10,10 +10,8 @@ class CadProdutos(QWidget):
         super().__init__()
         uic.loadUi("ui/ui_produtos.ui", self) 
 
-        # insere a tabela no layout
         self.table = TabelaProdutos(self)
         
-        # insere a table no layout do main_window
         self.verticalLayout.addWidget(self.table)
 
         self.produtoAtual = None

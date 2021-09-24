@@ -8,9 +8,9 @@ def getProdutos():
     cursor.execute("SELECT * FROM produtos; ")
 
     lista_produtos = []
-    for s in cursor.fetchall():
-        id = s[0]
-        nome = s[1]
+    """ for s in cursor.fetchall():
+       # id = s[0]
+        #nome = s[1]
         marca = s[2]
         descricao = s[3]
         precocom = s[4]
@@ -18,7 +18,7 @@ def getProdutos():
         quantidade = s[6]
 
         novoProduto = Produto(id, nome, marca, descricao, precocom, precoven, quantidade)
-        lista_produtos.append(novoProduto)
+        lista_produtos.append(novoProduto)"""
 
     conn.close()
     return lista_produtos

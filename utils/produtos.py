@@ -1,6 +1,6 @@
 
 class Produto:
-    def __int__(self,id, nome, marca, descricao, precocom, precoven, quantidade):
+    def __init__(self,id, nome, marca, descricao, precocom, precoven, quantidade):
      self.id = id
      self.nome = nome
      self.marca = marca

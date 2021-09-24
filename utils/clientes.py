@@ -2,7 +2,7 @@
 ## atributos do clientes = aos campos da tabela cliente
 
 class Cliente:
-    def __int__(self, id, nome, cpf, telefone, email, endereco):
+    def __init__(self, id, nome, cpf, telefone, email, endereco):
      self.id = id
      self.nome = nome
      self.cpf = cpf
