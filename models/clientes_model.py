@@ -1,16 +1,10 @@
-# importar a classe cliente
-
 from utils.clientes import Cliente
 import  models.database as db
 
 def getClientes():
-    # crio a conexão
     conn = db.connect_db()
-    # se comunica com o BD
     cursor = conn.cursor()
-    # executa o comando de seleção dos clientes
     cursor.execute("SELECT * From clientes;")
-    # coloca o resultado em uma lista de objetos clientes
     lista_clientes = []
     for linha in cursor.fetchall():
      
@@ -34,9 +28,8 @@ def getCliente(id):
     conn = db.connect_db()
     cursor = conn.cursor()
     sql = """ SELECT * FROM clientes WHERE id = :"""
-    cursor.execute(sql, [id]) # lista de argumentos na mesma ordem das ?s
+    cursor.execute(sql, [id]) 
    
-     # erro quando não retorna nenhum cliente
     linha = cursor.fetchall()[0]
      
     id = linha[0]
@@ -47,18 +40,16 @@ def getCliente(id):
     endereco = linha[5]
     #cria novo objeto
     novoCliente = Cliente(id, nome, cpf, telefone, email, endereco)
-    # insere o novo cliente na lista
-    # fecha a conexão
     conn.close()  
-    # retorna ao novo cliente
+ 
     return novoCliente  
     
 
 def addCliente(cliente):
     conn = db.connect_db()
     cursor = conn.cursor()
-    sql = """INSERT INTO Clientes (nome,cpf,telefone,email,endereco)
-               VALEUS (?, ?, ?, ?,?):"""
+    sql = """INSERT INTO clientes (nome,cpf,telefone,email,endereco)
+               VALUES (?, ?, ?, ?,?)"""
     cursor.execute(sql,[cliente.nome, cliente.cpf, cliente.telefone, cliente.email, cliente.endereco])
     conn.commit()
     conn.close()
@@ -67,7 +58,7 @@ def addCliente(cliente):
 def editCliente(cliente):
     conn = db.connect_db()
     cursor = conn.cursor()
-    sql = """UPDATE Clientes SET nome=?, cpf=?, telefone=?, email=?, endereco=? WHERE id=? """
+    sql = """UPDATE clientes SET nome=?, cpf=?, telefone=?, email=?, endereco=? WHERE id=? """
     cursor.execute(sql, [cliente.nome, cliente.cpf, cliente.telefone, cliente.email, cliente.endereco, cliente.id])
     conn.commit()
     conn.close
@@ -75,9 +66,8 @@ def editCliente(cliente):
 def delCliente(id):
     conn= db.connect_db()
     cursor= conn.cursor()
-    sql="""DELETE FROM Clientes WHERE id=?"""
+    sql="""DELETE FROM clientes WHERE id = ?"""
     cursor.execute(sql, [id])
-    # grava os dados no banco de dados
     conn.commit()
     conn.close() 
         

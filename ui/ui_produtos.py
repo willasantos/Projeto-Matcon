@@ -24,16 +24,13 @@ class CadProdutos(QWidget):
         self.b_excluir.clicked.connect(self.excluir)   
 
     def salvar(self):
-        # adiciona os campos na tabela
         novo = self.getProduto()
-        # verifica os campos vazios
         if novo != None:
             # é um novo contato
             if self.produtoAtual == None:
 
                 self.table.add(novo)
             else:
-                # manda editar no bando de dados
                 novo.id = self.produtoAtual.id
                 self.table.update(novo)
            
@@ -43,8 +40,8 @@ class CadProdutos(QWidget):
         nome = self.nome.text()
         marca = self.marca.text()
         descricao = self.descricao.text()
-        precocom = self.preco_compra.text()
-        precoven = self.preco_venda.text()
+        precocom = self.precocom.text()
+        precoven = self.precoven.text()
         quantidade = self.quantidade.text()
 
         if((nome != "") and (marca != "") and (descricao != "") and (precocom != "") and (precoven != "") and (quantidade != "")):

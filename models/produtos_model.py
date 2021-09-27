@@ -8,9 +8,9 @@ def getProdutos():
     cursor.execute("SELECT * FROM produtos; ")
 
     lista_produtos = []
-    """ for s in cursor.fetchall():
-       # id = s[0]
-        #nome = s[1]
+    for s in cursor.fetchall():
+        id = s[0]
+        nome = s[1]
         marca = s[2]
         descricao = s[3]
         precocom = s[4]
@@ -18,7 +18,7 @@ def getProdutos():
         quantidade = s[6]
 
         novoProduto = Produto(id, nome, marca, descricao, precocom, precoven, quantidade)
-        lista_produtos.append(novoProduto)"""
+        lista_produtos.append(novoProduto)
 
     conn.close()
     return lista_produtos
@@ -43,11 +43,11 @@ def getProduto(id):
     conn.close()  
     return novoProduto
 
-def addPoduto(produto):
+def addProduto(produto):
     conn = db.connect_db()
     cursor = conn.cursor()
-    sql = """INSERT INTO Produtos (nome,marca,descricao,precocom,precoven, quantidade)
-               VALEUS (?, ?, ?, ?,?):"""
+    sql = """INSERT INTO produtos (nome,marca,descricao,precocom,precoven, quantidade)
+               VALUES (?, ?, ?, ?,?, ?);"""
     cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.precocom, produto.precoven, produto.quantidade])
     conn.commit()
     conn.close()  
@@ -56,7 +56,7 @@ def editProduto(produto):
     conn = db.connect_db()
     cursor = conn.cursor()
     sql = """UPDATE produtos SET nome = ?, marca = ?, descricao = ?, precocom = ?, precoven = ?, quantidade = ? WHERE id = ?"""
-    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.precocom, produto.precoven, produto.quantidade])
+    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.precocom, produto.precoven, produto.quantidade, produto.id])
     conn.commit()
     conn.close()
 

@@ -24,7 +24,6 @@ class CadClientes(QWidget):
         self.b_excluir.clicked.connect(self.excluirItem)
 
     def salvarCliente(self):
-        # adiciona os campos na tabela
         novo = self.getCliente()
 
         if novo != None:
@@ -41,7 +40,7 @@ class CadClientes(QWidget):
     def getCliente(self):
         nome = self.nome.text()
         cpf = self.cpf.text()
-        telefone = self.fone.text()
+        telefone = self.telefone.text()
         email = self.email.text()
         endereco = self.endereco.text()
 

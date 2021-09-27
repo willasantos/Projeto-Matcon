@@ -33,6 +33,21 @@
     <string>Lista de Vendas</string>
    </property>
   </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>120</y>
+     <width>461</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>QTD</string>
+    </property>
+   </item>
+  </widget>
  </widget>
  <resources/>
  <connections/>
